@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from . import models
 
 from rest_framework import viewsets
 
@@ -98,3 +99,13 @@ class HelloViewSet(viewsets.ViewSet):
     def destroy(self,request,pk=None):
         """ Handles removing an object"""
         return Response({"method":'delete'})
+
+
+
+class UserProfileViewset(viewsets.ModelViewSet):
+    """ Handles creating and Updating profiles."""
+
+    serializer_class=serializers.UserProfileSerializer
+
+    queryset=models.UserProfile.objects.all()
+    """ listing out all the objects from out database."""
